@@ -12,3 +12,8 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/lists', 'PagesController@lists');
+Route::get('/login', 'PagesController@login');
+// Route::get('/lists', function(){
+//     return 'asd1'; 
+// });

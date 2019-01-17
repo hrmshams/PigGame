@@ -6,11 +6,12 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <title>Hello world!</title>
+        @yield('headContent')
     </head>
-
     <body>
+        @include('wrappers.header')
         <div class="container">
-            @yield('mainContent')
+            @yield('bodyContent')
         </div>
     </body>
 
