@@ -22,6 +22,8 @@ window.Vue = require('vue');
 
 Vue.component('make-game', require('./components/MakeGame.vue').default);
 Vue.component('nav-bar', require('./components/Navbar.vue').default);
+Vue.component('users', require('./components/Users.vue').default);
+// Vue.component('games', require('./components/Navbar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
