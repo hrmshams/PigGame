@@ -20,10 +20,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('make-game', require('./components/MakeGame.vue').default);
-Vue.component('nav-bar', require('./components/Navbar.vue').default);
-Vue.component('users', require('./components/Users.vue').default);
-// Vue.component('games', require('./components/Navbar.vue').default);
+Vue.component('nav-bar', require('./wrappers/Navbar.vue').default);
+Vue.component('make-game', require('./scenes/MakeGame.vue').default);
+Vue.component('users', require('./scenes/Users.vue').default);
+Vue.component('games', require('./scenes/Games.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

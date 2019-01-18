@@ -9,7 +9,7 @@
                 <a class="nav-link" :href="homePage">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="lists">Users</a>
+                <a class="nav-link" href="users">Users</a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="login">Start Game</a>
@@ -27,7 +27,7 @@
                     <a class="nav-link" href="games">Games</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="usersPage">Users</a>
+                    <a class="nav-link" href="users">Users</a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="startGame">Start Game</a>
