@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Games;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/games', function(){
+    $games = Games::all();
+    $r = $games;
+    return($r);
+});
+
+Route::get('/add/{name}', 'ApiController@gamesAdd');

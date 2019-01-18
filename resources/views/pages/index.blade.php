@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
 @section ('bodyContent')
-    <h1>welcome to home page!</h1>
+    <div >
+        <example-component></example-component>
+    </div>
 @endsection
