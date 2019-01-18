@@ -12,8 +12,9 @@
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/lists', 'PagesController@lists');
+Route::get('/makeGame', 'PagesController@makeGame');
+Route::get('/games', 'PagesController@games');
+Route::get('/users', 'PagesController@usersPage');
+Route::get('/profile', 'PagesController@profile');
+
 Route::get('/login', 'PagesController@login');
-// Route::get('/lists', function(){
-//     return 'asd1'; 
-// });

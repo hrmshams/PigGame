@@ -2,6 +2,6 @@
 
 @section ('bodyContent')
     <div >
-        home
+        games
     </div>
 @endsection

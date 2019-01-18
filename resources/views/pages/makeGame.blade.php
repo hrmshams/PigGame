@@ -1,7 +1,5 @@
 @extends('layouts.main')
 
 @section ('bodyContent')
-    <div >
-        home
-    </div>
+    <make-game></make-game>
 @endsection

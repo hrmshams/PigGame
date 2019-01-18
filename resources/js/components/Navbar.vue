@@ -21,16 +21,16 @@
                 <a class="nav-link" :href="homePage">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="lists">Make Game</a>
+                <a class="nav-link" href="makeGame">Make Game</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="login">Games</a>
+                    <a class="nav-link" href="games">Games</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="login">Users</a>
+                    <a class="nav-link" href="usersPage">Users</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="login">Start Game</a>
+                    <a class="nav-link" href="startGame">Start Game</a>
             </li>
         </ul>
 
@@ -39,12 +39,21 @@
                 <a class="nav-link" :href="homePage">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="lists">User Review</a>
+                <a class="nav-link" href="userReview">User Review</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="login">Game Review</a>
+                    <a class="nav-link" href="gameReivew">Game Review</a>
             </li>
         </ul>
+
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" v-if="type === consts.ADMIN || type === consts.USER">
+            <li class="nav-item">
+                <a class="nav-link" href="profile">Profile</a>
+            </li>
+        </ul>
+
+        <a class="btn btn-warning ml-md-3" href="login" v-if="type === consts.GUEST">Log In</a>
+        <a class="btn btn-danger ml-md-3" href="logout" v-if="type === consts.ADMIN || type === consts.USER">Log Out</a>
 
     </div>
 </nav>
@@ -60,7 +69,7 @@ export default {
                 USER : 'user',
                 ADMIN : 'admin',
             },
-            type : 'guest'
+            type : 'user'
         }
     },
     created() {
