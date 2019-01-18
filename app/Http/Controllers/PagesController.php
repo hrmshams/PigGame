@@ -16,7 +16,7 @@ class PagesController extends Controller
         return view('pages.games');
     }
     public function usersPage(){
-        return view('pages.users');
+        return view('pages.usersPage');
     }
     public function profile(){
         return view('pages.profile');
