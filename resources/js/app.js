@@ -24,6 +24,7 @@ Vue.component('nav-bar', require('./wrappers/Navbar.vue').default);
 Vue.component('make-game', require('./scenes/MakeGame.vue').default);
 Vue.component('users', require('./scenes/Users.vue').default);
 Vue.component('games', require('./scenes/Games.vue').default);
+Vue.component('admin-review', require('./scenes/AdminReview.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

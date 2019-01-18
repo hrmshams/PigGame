@@ -21,6 +21,16 @@ class PagesController extends Controller
     public function profile(){
         return view('pages.profile');
     }
+
+
+    public function userReview(){
+        return view('pages.userReview');
+    }
+    public function gameReview(){
+        return view('pages.gameReview');
+    }
+
+
     public function login(){
         return view('pages.login');
     }

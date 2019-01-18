@@ -17,4 +17,7 @@ Route::get('/games', 'PagesController@games');
 Route::get('/users', 'PagesController@usersPage');
 Route::get('/profile', 'PagesController@profile');
 
+Route::get('/userReview', 'PagesController@userReview');
+Route::get('/gameReview', 'PagesController@gameReview');
+
 Route::get('/login', 'PagesController@login');
