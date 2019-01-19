@@ -12,13 +12,13 @@
 */
 
 Route::get('/', 'PublicPagesController@index');
-Route::get('/makeGame', 'PagesController@makeGame');
+Route::get('/makeGame', 'UserPagesController@makeGame');
 Route::get('/games', 'PublicPagesController@games');
 Route::get('/users', 'PublicPagesController@usersPage');
-Route::get('/profile', 'PagesController@profile');
+Route::get('/profile', 'UserPagesController@profile');
 
-Route::get('/userReview', 'PagesController@userReview');
-Route::get('/gameReview', 'PagesController@gameReview');
+Route::get('/userReview', 'AdminPagesController@userReview');
+Route::get('/gameReview', 'AdminPagesController@gameReview');
 
 Route::get('/login', 'PagesController@login');
 

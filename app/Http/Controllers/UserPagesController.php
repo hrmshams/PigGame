@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller
+class UserPagesController extends Controller
 {
     public function __construct()
     {
@@ -26,13 +26,4 @@ class PagesController extends Controller
     public function profile(){
         return view('pages.profile');
     }
-
-
-    public function userReview(){
-        return view('pages.userReview');
-    }
-    public function gameReview(){
-        return view('pages.gameReview');
-    }
-
 }

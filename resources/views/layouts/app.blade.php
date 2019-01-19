@@ -41,7 +41,7 @@
                                     <a class="nav-link" href="login">Start Game</a>
                             </li>            
                         @else
-                            @if (isset(Auth::user()->type) && Auth::user()->type == 'admin')
+                            @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin)
                                 <li class="nav-item">
                                     <a class="nav-link" href="home">Home</a>
                                 </li>
