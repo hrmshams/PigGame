@@ -24,9 +24,9 @@ use App\Games;
 //     return($r);
 // });
 
-Route::post('login', 'api\UserController@login');
-Route::post('register', 'api\UserController@register');
+// Route::post('login', 'api\UserController@login');
+// Route::post('register', 'api\UserController@register');
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('details', 'api\UserController@details');
-});
+// Route::group(['middleware' => 'auth:api'], function(){
+//     Route::post('details', 'api\UserController@details');
+// });

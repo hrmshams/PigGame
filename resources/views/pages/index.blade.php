@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
-@section ('bodyContent')
+{{-- @section ('bodyContent')
     <div >
         home
     </div>
-@endsection
+@endsection --}}

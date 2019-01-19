@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PublicPagesController@index');
 Route::get('/makeGame', 'PagesController@makeGame');
-Route::get('/games', 'PagesController@games');
-Route::get('/users', 'PagesController@usersPage');
+Route::get('/games', 'PublicPagesController@games');
+Route::get('/users', 'PublicPagesController@usersPage');
 Route::get('/profile', 'PagesController@profile');
 
 Route::get('/userReview', 'PagesController@userReview');
 Route::get('/gameReview', 'PagesController@gameReview');
 
 Route::get('/login', 'PagesController@login');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
