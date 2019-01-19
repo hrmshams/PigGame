@@ -14,14 +14,19 @@ use App\Games;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/games', function(){
-    $games = Games::all();
-    $r = $games;
-    return($r);
-});
+// Route::get('/games', function(){
+//     $games = Games::all();
+//     $r = $games;
+//     return($r);
+// });
 
-Route::get('/add/{name}', 'ApiController@gamesAdd');
+Route::post('login', 'api\UserController@login');
+Route::post('register', 'api\UserController@register');
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'api\UserController@details');
+});
