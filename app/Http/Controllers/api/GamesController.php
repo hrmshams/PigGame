@@ -26,4 +26,20 @@ class GamesController extends Controller
                 return response($result['data'], 200);
         }
     }
+
+
+    public function addGame($data){
+        if (Games::validateAddGameData($data)){
+            $result = Games::addGame($data);
+
+            if (result == -1){
+                return response("some error in adding game to database happened", 500);
+            }else{
+                return response("successfuly game added", 201);
+            }
+        
+        }else{
+            return response("data format is not valid", 400);
+        }     
+    }
 }

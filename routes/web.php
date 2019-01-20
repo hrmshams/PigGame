@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * web pages routes
+ */
 Route::get('/', 'PublicPagesController@index');
 Route::get('/makeGame', 'UserPagesController@makeGame');
 Route::get('/games', 'PublicPagesController@games');
@@ -24,11 +27,12 @@ Route::get('/login', 'PagesController@login');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home'); //WTF IS THIS ?
 
 
 /**
- * Routes related to api
+ * api routes
  */
 Route::get('/api/users/{order?}', 'api\UsersController@getUsers');
 Route::get('/api/games/{order?}', 'api\GamesController@getGames');
+Route::post('/api/games/addGame', 'api\GamesController@addGame');

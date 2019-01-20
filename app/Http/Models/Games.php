@@ -41,4 +41,36 @@ class Games extends Model
             'status' => 200,
         ];
     }
+
+
+    public static function validateAddGameData($data){
+        if (!isset($data['name']))
+            return false;
+        if (!isset($data['maximumScore']))
+            return false;
+        if (!isset($data['zeroMaker']))
+            return false;
+        if (!isset($data['diceNumber']))
+            return false;
+
+        return true;
+    }
+
+    public static function addGame($data){
+        $game = new Games;
+
+        try {
+            $game->name = $data->name;
+            $game->maximumScore = $data->maximumScore;
+            $game->zeroMaker = $data->zeroMaker;
+            $game->maximumThrow = $data->maximumThrow;
+            $game->dicesNumber = $data->diceNumber;    
+            
+            $game->save();
+
+            return 1;
+        }catch(Exception $e){
+            return -1;
+        }
+    }
 }

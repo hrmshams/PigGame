@@ -16,8 +16,25 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->number('maximumScore');
+            $table->string('zeroMaker');
+            $table->number('maximumThrow');
+            $table->number('dicesNumber');
+
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            [
+                'id' => 1,
+                'name' => 'hamid game',
+                'maximumScore' => 100,
+                'zeroMaker' => '6',
+                'maximumThrow' => 5,
+                'dicesNumber' => 1
+            ]
+        );
+
     }
 
     /**
