@@ -5,7 +5,7 @@
                 <div class = "mb-4">
                     <h5 class = "card-text"> {{user.name}} </h5> <span>{{user.isOnline ? "online" : "offline"}}</span>
                 </div>
-                <p class = "card-text"> Score : {{user.score}} </p>
+                <p class = "card-text"> rate : {{user.rate}} </p>
                 <p class = "card-text"> Played : {{user.played}} </p>
                 <button v-on:click = "addToFriends()" class="btn btn-primary"> add to friends </button>
             </div>

@@ -21,6 +21,9 @@ class CreateGamesTable extends Migration
             $table->integer('maximum_throw');
             $table->integer('dices_number');
 
+            $table->decimal('rate')->default(0);
+            $table->integer('played')->default(0);
+
             $table->timestamps();
         });
 

@@ -62,9 +62,9 @@ export default {
     methods: {
         getUsers : function(){
             var self = this
-            getUsers((res)=>{
+            getUsers(undefined, (res)=>{
                 self.users = res
-                console.log(res[0].name)
+                console.log(res[0])
             }, (err)=>{
             })
         }

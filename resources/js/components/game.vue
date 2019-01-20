@@ -5,7 +5,7 @@
                 <div class = "mb-4">
                     <h5 class = "card-text"> {{game.name}} </h5>
                 </div>
-                <p class = "card-text"> Score : {{game.score}} </p>
+                <p class = "card-text"> rate : {{game.rate}} </p>
                 <p class = "card-text"> Played : {{game.played}} </p>
                 <button v-on:click = "playGame()" class="btn btn-primary"> play </button>
             </div>
@@ -19,8 +19,6 @@ export default {
     },
     props :{
         game : Object
-    },
-    data() {
     },
     methods: {
         playGame : function(){

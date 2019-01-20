@@ -31,6 +31,7 @@
 <script>
 import game from '../components/game'
 import filters from '../components/filters'
+import {getGames} from '../controller/apiConnector.js'
 
 export default {
     components : {
@@ -51,16 +52,24 @@ export default {
                 score : 100,
                 played : 2,
             },
-            {
-                name : 'shams',
-                score : 200,
-                played : 3,
-            },
         ]
         this.filters = [
             {title : 'filter1', onclick : ()=>{console.log('1')}},
             {title : 'filter2', onclick : ()=>{console.log('2')}}
         ]
+        this.getGames()
     },
+    methods: {
+        getGames : function(){
+            var self = this
+            getGames(undefined, (res)=>{
+                self.games = res
+                console.log(res)
+            }, (err)=>{
+                console.log(err)
+            })
+        }
+    },
+
 }
 </script>

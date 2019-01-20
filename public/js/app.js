@@ -1843,7 +1843,6 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     game: Object
   },
-  data: function data() {},
   methods: {
     playGame: function playGame() {
       console.log('acc');
@@ -1982,6 +1981,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/game */ "./resources/js/components/game.vue");
 /* harmony import */ var _components_filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/filters */ "./resources/js/components/filters.vue");
+/* harmony import */ var _controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../controller/apiConnector.js */ "./resources/js/controller/apiConnector.js");
 //
 //
 //
@@ -2012,6 +2012,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2031,10 +2032,6 @@ __webpack_require__.r(__webpack_exports__);
       name: 'hamid',
       score: 100,
       played: 2
-    }, {
-      name: 'shams',
-      score: 200,
-      played: 3
     }];
     this.filters = [{
       title: 'filter1',
@@ -2047,6 +2044,19 @@ __webpack_require__.r(__webpack_exports__);
         console.log('2');
       }
     }];
+    this.getGames();
+  },
+  methods: {
+    getGames: function getGames() {
+      var self = this;
+
+      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__["getGames"])(undefined, function (res) {
+        self.games = res;
+        console.log(res);
+      }, function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -2203,9 +2213,9 @@ __webpack_require__.r(__webpack_exports__);
     getUsers: function getUsers() {
       var self = this;
 
-      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__["getUsers"])(function (res) {
+      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__["getUsers"])(undefined, function (res) {
         self.users = res;
-        console.log(res[0].name);
+        console.log(res[0]);
       }, function (err) {});
     }
   }
@@ -37253,7 +37263,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
-          _vm._v(" Score : " + _vm._s(_vm.game.score) + " ")
+          _vm._v(" rate : " + _vm._s(_vm.game.rate) + " ")
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
@@ -37310,7 +37320,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
-          _vm._v(" Score : " + _vm._s(_vm.user.score) + " ")
+          _vm._v(" rate : " + _vm._s(_vm.user.rate) + " ")
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
@@ -49412,14 +49422,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************!*\
   !*** ./resources/js/components/user.vue ***!
   \******************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.vue?vue&type=template&id=e039bdd4& */ "./resources/js/components/user.vue?vue&type=template&id=e039bdd4&");
 /* harmony import */ var _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user.vue?vue&type=script&lang=js& */ "./resources/js/components/user.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -49449,7 +49460,7 @@ component.options.__file = "resources/js/components/user.vue"
 /*!*******************************************************************!*\
   !*** ./resources/js/components/user.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49481,18 +49492,26 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/controller/apiConnector.js ***!
   \*************************************************/
-/*! exports provided: getUsers */
+/*! exports provided: getUsers, getGames */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGames", function() { return getGames; });
 var baseUrl = "/myFirstSite/public/";
 var methods = {
-  getUsers: "api/users"
+  getUsers: "api/users",
+  getGames: 'api/games'
 };
-function getUsers(onSuccess, onFailure) {
-  fetch(baseUrl + methods.getUsers, {
+function getUsers(filter, onSuccess, onFailure) {
+  var url = baseUrl + methods.getUsers;
+
+  if (filter) {
+    url = url + "/" + filter;
+  }
+
+  fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
@@ -49501,6 +49520,26 @@ function getUsers(onSuccess, onFailure) {
     return response.json();
   }).then(function (response) {
     return onSuccess(response);
+  }).catch(function (err) {
+    return onFailure(err);
+  });
+}
+function getGames(filter, onSuccess, onFailure) {
+  var url = baseUrl + methods.getGames;
+
+  if (filter) {
+    url = url + "/" + filter;
+  }
+
+  fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (response) {
+    onSuccess(response);
   }).catch(function (err) {
     return onFailure(err);
   });
