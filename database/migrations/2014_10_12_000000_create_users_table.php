@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->insert(
+        DB::table('users')->insert([
             [
                 'id' => 1,
                 'name' => 'hamid',
@@ -39,6 +39,7 @@ class CreateUsersTable extends Migration
                 'password' => '$2y$10$V31YAOVXjig.B95QsARraedRafDQhf3A1AT9AgYThVMPOHGG34IYe',
                 'is_admin' => true,
             ]
+        ]
         );
     }
 

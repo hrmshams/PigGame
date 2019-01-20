@@ -56,6 +56,11 @@ class Games extends Model
         return true;
     }
 
+    public static function getGame($name){
+        $game = Game::where('name', $name);
+        return $game;
+    }
+
     public static function addGame($data){
         $game = new Games;
 

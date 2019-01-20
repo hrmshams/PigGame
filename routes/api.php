@@ -18,15 +18,6 @@ use App\Games;
 //     return $request->user();
 // });
 
-// Route::get('/games', function(){
-//     $games = Games::all();
-//     $r = $games;
-//     return($r);
-// });
-
-// Route::post('login', 'api\UserController@login');
-// Route::post('register', 'api\UserController@register');
-
-// Route::group(['middleware' => 'auth:api'], function(){
-//     Route::post('details', 'api\UserController@details');
-// });
+Route::get('/users/{order?}', 'api\UsersController@getUsers');
+Route::get('/games/{order?}', 'api\GamesController@getGames');
+Route::post('/games/add_game', 'api\GamesController@addGame')->middleware('auth');
