@@ -29,24 +29,23 @@ class GamesController extends Controller
 
 
     public function addGame(Request $request){
-        return "123";
-        // if (Games::validateAddGameData($data)){
+        if (Games::validateAddGameData($request)){
 
-        //     $g = Games::getGame($data['name']);
-        //     if ( isset($g) && (count($g) > 0) ){
-        //         return response("repetitive name for game.", 400);
-        //     }
+            $g = Games::getGame($request['name']);
 
-        //     $result = Games::addGame($data);
+            if ($g){
+                return response("repetitive name for game.", 400);
+            }
 
-        //     if (result == -1){
-        //         return response("some error in adding game to database happened.", 500);
-        //     }else{
-        //         return response("successfuly game added.", 201);
-        //     }
-        
-        // }else{
-        //     return response("data format is not valid.", 400);
-        // }     
+            $result = Games::addGame($request);
+
+            if ($result == -1){
+                return response("some error in adding game to database happened.", 500);
+            }else{
+                return response("successfuly game added.", 201);
+            }        
+        }else{
+            return response("data format is not valid.", 400);
+        }     
     }
 }

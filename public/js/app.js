@@ -2071,6 +2071,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller/apiConnector.js */ "./resources/js/controller/apiConnector.js");
 //
 //
 //
@@ -2125,11 +2126,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      name: 'your game',
+      maximumScore: '100',
+      zeroMaker: '1 6',
+      maximumThrow: 10,
+      dicesNumber: "1",
+      response: ''
+    };
   },
-  methods: {}
+  methods: {
+    addGame: function addGame() {
+      var self = this;
+      var obj = {
+        name: this.name,
+        maximumScore: this.maximumScore,
+        zeroMaker: this.zeroMaker,
+        maximumThrow: this.maximumThrow,
+        dicesNumber: this.dicesNumber
+      };
+
+      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_0__["addGame"])(obj, function (res) {
+        console.log(res);
+        self.response = 'MSG : ' + res.data;
+      }, function (err) {
+        console.log(JSON.stringify(err));
+        self.response = 'ERROR : ' + err.response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37459,119 +37487,224 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Make Game")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "container my-3" }, [
-              _c("form", [
-                _c("label", [_vm._v("Maximum Score")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "maximumScore", placeholder: "0" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-4" }),
-                _vm._v(" "),
-                _c("label", [_vm._v("Zero Maker Dice Numbers")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "maximumScore", placeholder: "0" }
-                }),
-                _vm._v(" "),
-                _c("small", { staticClass: "form-text text-muted" }, [
-                  _vm._v(
-                    "enter dice/s number which throwing them makes current point zero."
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-4" }),
-                _vm._v(" "),
-                _c("label", [_vm._v("Maximum Dice Throwing Number")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "maximumScore", placeholder: "0" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-4" }),
-                _vm._v(" "),
-                _c("label", [_vm._v("Number Of Dices")]),
-                _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "btn-group btn-group-toggle",
-                      attrs: { "data-toggle": "buttons" }
-                    },
-                    [
-                      _c("label", { staticClass: "btn btn-light active" }, [
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            name: "options",
-                            id: "option1",
-                            autocomplete: "off",
-                            checked: ""
-                          }
-                        }),
-                        _vm._v(" 1\n                            ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "btn btn-light" }, [
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            name: "options",
-                            id: "option2",
-                            autocomplete: "off"
-                          }
-                        }),
-                        _vm._v(" 2\n                            ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "btn btn-light" }, [
-                        _c("input", {
-                          attrs: {
-                            type: "radio",
-                            name: "options",
-                            id: "option3",
-                            autocomplete: "off"
-                          }
-                        }),
-                        _vm._v(" 4\n                            ")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-4" }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Submit")]
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Make Game")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "container my-3" }, [
+            _c("form", [
+              _c("label", [_vm._v("Game Name")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "maximumScore", placeholder: "0" },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-4" }),
+              _vm._v(" "),
+              _c("label", [_vm._v("Maximum Score")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.maximumScore,
+                    expression: "maximumScore"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "maximumScore", placeholder: "0" },
+                domProps: { value: _vm.maximumScore },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.maximumScore = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-4" }),
+              _vm._v(" "),
+              _c("label", [_vm._v("Zero Maker Dice Numbers")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.zeroMaker,
+                    expression: "zeroMaker"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "maximumScore", placeholder: "0" },
+                domProps: { value: _vm.zeroMaker },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.zeroMaker = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("small", { staticClass: "form-text text-muted" }, [
+                _vm._v(
+                  "enter dice/s number which throwing them makes current point zero."
                 )
-              ])
-            ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-4" }),
+              _vm._v(" "),
+              _c("label", [_vm._v("Maximum Dice Throwing Number")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.maximumThrow,
+                    expression: "maximumThrow"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "maximumScore", placeholder: "0" },
+                domProps: { value: _vm.maximumThrow },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.maximumThrow = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-4" }),
+              _vm._v(" "),
+              _c("label", [_vm._v("aNumbers Of Dices")]),
+              _vm._v(" "),
+              _c("div", [
+                _c("div", { staticClass: "btn-group btn-group-toggle" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dicesNumber,
+                        expression: "dicesNumber"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      id: "one",
+                      name: "num",
+                      checked: "",
+                      value: "1"
+                    },
+                    domProps: { checked: _vm._q(_vm.dicesNumber, "1") },
+                    on: {
+                      change: function($event) {
+                        _vm.dicesNumber = "1"
+                      }
+                    }
+                  }),
+                  _vm._v("   1  \n                                "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dicesNumber,
+                        expression: "dicesNumber"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      id: "two",
+                      name: "num",
+                      value: "2"
+                    },
+                    domProps: { checked: _vm._q(_vm.dicesNumber, "2") },
+                    on: {
+                      change: function($event) {
+                        _vm.dicesNumber = "2"
+                      }
+                    }
+                  }),
+                  _vm._v("   2  \n                                "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dicesNumber,
+                        expression: "dicesNumber"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      id: "four",
+                      name: "num",
+                      value: "4"
+                    },
+                    domProps: { checked: _vm._q(_vm.dicesNumber, "4") },
+                    on: {
+                      change: function($event) {
+                        _vm.dicesNumber = "4"
+                      }
+                    }
+                  }),
+                  _vm._v("   4  \n                            ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-4" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", on: { click: _vm.addGame } },
+              [_vm._v("Submit")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "container mb-3" }, [
+            _vm._v(
+              "\n                        " +
+                _vm._s(_vm.response) +
+                "\n                    "
+            )
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49132,15 +49265,14 @@ Vue.component('nav-bar', __webpack_require__(/*! ./wrappers/Navbar.vue */ "./res
 Vue.component('make-game', __webpack_require__(/*! ./scenes/MakeGame.vue */ "./resources/js/scenes/MakeGame.vue").default);
 Vue.component('users', __webpack_require__(/*! ./scenes/Users.vue */ "./resources/js/scenes/Users.vue").default);
 Vue.component('games', __webpack_require__(/*! ./scenes/Games.vue */ "./resources/js/scenes/Games.vue").default);
-Vue.component('admin-review', __webpack_require__(/*! ./scenes/AdminReview.vue */ "./resources/js/scenes/AdminReview.vue").default);
-var x = document.getElementById("csrf-meta").getAttribute('content');
-Vue.mixin({
-  data: function data() {
-    return {
-      csrf_token: x
-    };
-  }
-});
+Vue.component('admin-review', __webpack_require__(/*! ./scenes/AdminReview.vue */ "./resources/js/scenes/AdminReview.vue").default); // Vue.mixin({
+//     data: function() {
+//       return {
+//         csrf_token : x
+//       }
+//     }
+// })
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49422,15 +49554,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************!*\
   !*** ./resources/js/components/user.vue ***!
   \******************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.vue?vue&type=template&id=e039bdd4& */ "./resources/js/components/user.vue?vue&type=template&id=e039bdd4&");
 /* harmony import */ var _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user.vue?vue&type=script&lang=js& */ "./resources/js/components/user.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -49460,7 +49591,7 @@ component.options.__file = "resources/js/components/user.vue"
 /*!*******************************************************************!*\
   !*** ./resources/js/components/user.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49492,18 +49623,24 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/controller/apiConnector.js ***!
   \*************************************************/
-/*! exports provided: getUsers, getGames */
+/*! exports provided: getUsers, getGames, addGame */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGames", function() { return getGames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addGame", function() { return addGame; });
 var baseUrl = "/myFirstSite/public/";
 var methods = {
   getUsers: "api/users",
-  getGames: 'api/games'
+  getGames: 'api/games',
+  addGame: 'api/games/add_game'
 };
+var csrf_token = document.getElementById("csrf-meta").getAttribute('content');
+
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 function getUsers(filter, onSuccess, onFailure) {
   var url = baseUrl + methods.getUsers;
 
@@ -49543,6 +49680,38 @@ function getGames(filter, onSuccess, onFailure) {
   }).catch(function (err) {
     return onFailure(err);
   });
+}
+function addGame(data, onSuccess, onFailure) {
+  var url = baseUrl + methods.addGame;
+  console.log(data);
+  axios({
+    method: 'post',
+    url: url,
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": csrf_token
+    },
+    data: data
+  }).then(function (res) {
+    onSuccess(res);
+  }).catch(function (err) {
+    onFailure(err);
+  }); // fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //         "Content-Type": "application/json",
+  //         "X-CSRF-TOKEN" : csrf_token
+  //     },
+  //     body : JSON.stringify(data)
+  // })
+  // .then(response => response.json())     
+  // .then(response => {
+  //     onSuccess(response)
+  // })     
+  // .catch(err =>{
+  //     onFailure(err)
+  // }
+  // );
 }
 
 /***/ }),

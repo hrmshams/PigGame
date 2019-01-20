@@ -26,15 +26,14 @@ Vue.component('users', require('./scenes/Users.vue').default);
 Vue.component('games', require('./scenes/Games.vue').default);
 Vue.component('admin-review', require('./scenes/AdminReview.vue').default);
 
-var x = document.getElementById("csrf-meta").getAttribute('content');
 
-Vue.mixin({
-    data: function() {
-      return {
-        csrf_token : x
-      }
-    }
-})
+// Vue.mixin({
+//     data: function() {
+//       return {
+//         csrf_token : x
+//       }
+//     }
+// })
   
 /**
  * Next, we will create a fresh Vue application instance and attach it to

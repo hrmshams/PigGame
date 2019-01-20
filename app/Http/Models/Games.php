@@ -50,14 +50,14 @@ class Games extends Model
             return false;
         if (!isset($data['zeroMaker']))
             return false;
-        if (!isset($data['diceNumber']))
+        if (!isset($data['dicesNumber']))
             return false;
 
         return true;
     }
 
     public static function getGame($name){
-        $game = Game::where('name', $name);
+        $game = Games::where('name', $name)->first();
         return $game;
     }
 
@@ -66,10 +66,10 @@ class Games extends Model
 
         try {
             $game->name = $data->name;
-            $game->maximumScore = $data->maximumScore;
-            $game->zeroMaker = $data->zeroMaker;
-            $game->maximumThrow = $data->maximumThrow;
-            $game->dicesNumber = $data->diceNumber;    
+            $game->maximum_score = $data->maximumScore;
+            $game->zero_maker = $data->zeroMaker;
+            $game->maximum_throw = $data->maximumThrow;
+            $game->dices_number = $data->dicesNumber;
             
             $game->save();
 
