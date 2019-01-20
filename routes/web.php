@@ -25,3 +25,9 @@ Route::get('/login', 'PagesController@login');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+/**
+ * Routes related to api
+ */
+Route::get('/api/users/{order?}', 'api\UsersController@getUsers');
