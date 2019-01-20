@@ -31,3 +31,4 @@ Route::get('/home', 'HomeController@index')->name('home');
  * Routes related to api
  */
 Route::get('/api/users/{order?}', 'api\UsersController@getUsers');
+Route::get('/api/games/{order?}', 'api\GamesController@getGames');
