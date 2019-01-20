@@ -17,7 +17,3 @@ use App\Games;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
-Route::get('/users/{order?}', 'api\UsersController@getUsers');
-Route::get('/games/{order?}', 'api\GamesController@getGames');
-Route::post('/games/add_game', 'api\GamesController@addGame')->middleware('auth');

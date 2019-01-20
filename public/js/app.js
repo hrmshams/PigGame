@@ -1882,7 +1882,6 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     user: Object
   },
-  data: function data() {},
   methods: {
     addToFriends: function addToFriends() {
       console.log('acc');
@@ -2136,6 +2135,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/user */ "./resources/js/components/user.vue");
 /* harmony import */ var _components_filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/filters */ "./resources/js/components/filters.vue");
+/* harmony import */ var _controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../controller/apiConnector.js */ "./resources/js/controller/apiConnector.js");
 //
 //
 //
@@ -2165,7 +2165,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2181,15 +2181,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     //todo 
     this.users = [{
-      username: 'hamid',
+      name: 'hamid',
       isOnline: false,
       score: 100,
       played: 2
-    }, {
-      username: 'shams',
-      isOnline: true,
-      score: 200,
-      played: 3
     }];
     this.filters = [{
       title: 'filter1',
@@ -2202,6 +2197,17 @@ __webpack_require__.r(__webpack_exports__);
         console.log('2');
       }
     }];
+    this.getUsers();
+  },
+  methods: {
+    getUsers: function getUsers() {
+      var self = this;
+
+      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__["getUsers"])(function (res) {
+        self.users = res;
+        console.log(res[0].name);
+      }, function (err) {});
+    }
   }
 });
 
@@ -37297,7 +37303,7 @@ var render = function() {
       _c("div", { staticClass: "card-body text-center" }, [
         _c("div", { staticClass: "mb-4" }, [
           _c("h5", { staticClass: "card-text" }, [
-            _vm._v(" " + _vm._s(_vm.user.username) + " ")
+            _vm._v(" " + _vm._s(_vm.user.name) + " ")
           ]),
           _vm._v(" "),
           _c("span", [_vm._v(_vm._s(_vm.user.isOnline ? "online" : "offline"))])
@@ -49117,6 +49123,14 @@ Vue.component('make-game', __webpack_require__(/*! ./scenes/MakeGame.vue */ "./r
 Vue.component('users', __webpack_require__(/*! ./scenes/Users.vue */ "./resources/js/scenes/Users.vue").default);
 Vue.component('games', __webpack_require__(/*! ./scenes/Games.vue */ "./resources/js/scenes/Games.vue").default);
 Vue.component('admin-review', __webpack_require__(/*! ./scenes/AdminReview.vue */ "./resources/js/scenes/AdminReview.vue").default);
+var x = document.getElementById("csrf-meta").getAttribute('content');
+Vue.mixin({
+  data: function data() {
+    return {
+      csrf_token: x
+    };
+  }
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49463,19 +49477,49 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/controller/apiConnector.js":
+/*!*************************************************!*\
+  !*** ./resources/js/controller/apiConnector.js ***!
+  \*************************************************/
+/*! exports provided: getUsers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
+var baseUrl = "/myFirstSite/public/";
+var methods = {
+  getUsers: "api/users"
+};
+function getUsers(onSuccess, onFailure) {
+  fetch(baseUrl + methods.getUsers, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (response) {
+    return onSuccess(response);
+  }).catch(function (err) {
+    return onFailure(err);
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/scenes/AdminReview.vue":
 /*!*********************************************!*\
   !*** ./resources/js/scenes/AdminReview.vue ***!
   \*********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AdminReview_vue_vue_type_template_id_08e9b386___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminReview.vue?vue&type=template&id=08e9b386& */ "./resources/js/scenes/AdminReview.vue?vue&type=template&id=08e9b386&");
 /* harmony import */ var _AdminReview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminReview.vue?vue&type=script&lang=js& */ "./resources/js/scenes/AdminReview.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdminReview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdminReview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -49505,7 +49549,7 @@ component.options.__file = "resources/js/scenes/AdminReview.vue"
 /*!**********************************************************************!*\
   !*** ./resources/js/scenes/AdminReview.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

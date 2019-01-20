@@ -1,6 +1,5 @@
 <template>
     <div class = "row no-gutters">
-
         <div class="d-none d-xl-block col-xl-2 bd-toc">
             <filters v-bind:items = "filters"></filters>
         </div>
@@ -31,6 +30,7 @@
 <script>
 import user from '../components/user'
 import filters from '../components/filters'
+import {getUsers} from '../controller/apiConnector.js'
 
 export default {
     components : {
@@ -46,22 +46,28 @@ export default {
         //todo 
         this.users = [
             {
-                username : 'hamid',
+                name : 'hamid',
                 isOnline : false,
                 score : 100,
                 played : 2,
-            },
-            {
-                username : 'shams',
-                isOnline : true,
-                score : 200,
-                played : 3,
             },
         ]      
         this.filters = [
             {title : 'filter1', onclick : ()=>{console.log('1')}},
             {title : 'filter2', onclick : ()=>{console.log('2')}}
         ]
+
+        this.getUsers()
+    },
+    methods: {
+        getUsers : function(){
+            var self = this
+            getUsers((res)=>{
+                self.users = res
+                console.log(res[0].name)
+            }, (err)=>{
+            })
+        }
     },
 }
 </script>

@@ -34,8 +34,5 @@ Route::get('/home', 'HomeController@index')->name('home'); //WTF IS THIS ?
  * api routes
  */
 Route::get('/api/users/{order?}', 'api\UsersController@getUsers');
-// Route::post('/api/games/add_game', 'api\GamesController@addGame');
-Route::get('/api/games/add_game', function(){
-    return "123";
-});
-// Route::get('/api/games/{order?}', 'api\GamesController@getGames');
+Route::get('/api/games/{order?}', 'api\GamesController@getGames');
+Route::post('/api/games/add_game', 'api\GamesController@addGame')->middleware('auth');

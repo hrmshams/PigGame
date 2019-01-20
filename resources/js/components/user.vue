@@ -3,7 +3,7 @@
         <div class = "card mb-4 shadow-sm">
             <div class="card-body text-center">
                 <div class = "mb-4">
-                    <h5 class = "card-text"> {{user.username}} </h5> <span>{{user.isOnline ? "online" : "offline"}}</span>
+                    <h5 class = "card-text"> {{user.name}} </h5> <span>{{user.isOnline ? "online" : "offline"}}</span>
                 </div>
                 <p class = "card-text"> Score : {{user.score}} </p>
                 <p class = "card-text"> Played : {{user.played}} </p>
@@ -20,8 +20,6 @@ export default {
     },
     props :{
         user : Object
-    },
-    data() {
     },
     methods: {
         addToFriends : function(){
