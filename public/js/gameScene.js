@@ -1,6 +1,16 @@
 /****************************************/
 /*** Game Class and its dependencies ***/
 /****************************************/
+var images = [
+  0,
+  document.getElementById("img1").getAttribute('content'),
+  document.getElementById("img2").getAttribute('content'),
+  document.getElementById("img3").getAttribute('content'),
+  document.getElementById("img4").getAttribute('content'),
+  document.getElementById("img5").getAttribute('content'),
+  document.getElementById("img6").getAttribute('content'),
+]
+
 var dice1 = document.getElementById("dice1")
 var dice2 = document.getElementById("dice2")
 var playerContainers = [
@@ -50,8 +60,8 @@ function Game(score) {
     const vals = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
 
     // setting the images
-    dice1.src = './assets/dice-' + (vals[0]) + ".png"
-    dice2.src = './assets/dice-' + (vals[1]) + ".png"
+    dice1.src = images[vals[0]]
+    dice2.src = images[vals[1]]
 
     // logic of game
     const sumRolls = vals[0] + vals[1]

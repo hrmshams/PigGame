@@ -4,6 +4,15 @@
   <head>
     <link rel="stylesheet" href="{{URL::asset('css/main.css')}}" type="text/css"/>
     <meta id ="csrf-meta" name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta id ="img1" content="{{ asset('assets/dice-1.png') }}">
+    <meta id ="img2" content="{{ asset('assets/dice-2.png') }}">
+    <meta id ="img3" content="{{ asset('assets/dice-3.png') }}">
+    <meta id ="img4" content="{{ asset('assets/dice-4.png') }}">
+    <meta id ="img5" content="{{ asset('assets/dice-5.png') }}">
+    <meta id ="img6" content="{{ asset('assets/dice-6.png') }}">
+
+
     <meta charset="utf-8"/>
   </head>
 
@@ -24,10 +33,10 @@
 
         <div class="center">
           <div>
-            <img id="dice1" src="assets/dice-1.png" alt="dice-1" class="image">
+            <img id="dice1" src="{{asset('assets/dice-1.png')}}" alt="dice-1" class="image">
           </div>
           <div>
-            <img id="dice2" src="assets/dice-1.png" alt="dice-2" class="image">
+            <img id="dice2" src="{{asset('assets/dice-1.png')}}" alt="dice-2" class="image">
           </div>
         </div>
 
