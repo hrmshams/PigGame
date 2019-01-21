@@ -21,10 +21,10 @@ var request = function(method, url, data, onSuccess, onFail) {
 }
 
 var GameHandler = function(){
-  this.baseURL = 'http://127.0.0.1/myFirstSite/public/api/'
-  this.routes = {
-    askGame : this.baseURL + 'ask_new_game',
-    getGameState : this.baseURL + 'get_game_state'
+  var baseURL = 'http://127.0.0.1/myFirstSite/public/api/game_scene/'
+  var routes = {
+    askGame : baseURL + 'ask_new_game',
+    getGameState : baseURL + 'get_game_state'
   }
 
   this.onSuccCallback = (res)=>{
@@ -34,18 +34,18 @@ var GameHandler = function(){
     console.warn('error happened : ')
     console.warn(err)
   }
-  
+
   this.askForGame = function(){
-    var onSucc = function(){
-
+    var onSucc = function(res){
+      console.log(res)
     }
-    var onFail = function(){
-
+    var onFail = function(err){
+      console.log(err)
     }
 
     var game_name = document.getElementById("game-name").innerHTML;
-    var data = 'game_name=' + game_name 
-    request('POST', this.routes.askGame, data, onSucc, onFail)
+    // var data = 'game_name=' + game_name 
+    request('GET', routes.askGame + "/" + game_name, null, onSucc, onFail)
   }
 
   this.getGameState = function(game_id){
@@ -59,9 +59,9 @@ var GameHandler = function(){
     var data = "game_id="+game_id 
     this.setInterval(
         function(){ 
-          request('GET', getGameState, data, onSucc, onFail)
+          request('GET', routes.getGameState, data, onSucc, onFail)
         }              
-      ,1500)
+    ,1500)
   }
 }
 

@@ -38,3 +38,6 @@ Route::get('/home', 'HomeController@index')->name('home'); //WTF IS THIS ?
 Route::get('/api/users/{order?}', 'api\UsersController@getUsers');
 Route::get('/api/games/{order?}', 'api\GamesController@getGames');
 Route::post('/api/games/add_game', 'api\GamesController@addGame')->middleware('auth');
+
+Route::get('/api/game_scene/ask_new_game/{game_name}', 'api\GameSceneController@askGame');
+Route::get('/api/game_scene/get_game_state/{game_id}', 'api\GameSceneController@getGameState');
