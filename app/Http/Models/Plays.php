@@ -12,8 +12,7 @@ class Plays extends Model
         $requests = Plays::where([
             ['game_name', '=', $gn],
             ['state', '=', 'pending']
-        ]);
-        $requests = Plays::where('game_name', $gn)->find(1);
+        ])->first();
 
         if (isset($requests) && $requests->count() > 0)
             return $requests;
@@ -39,5 +38,20 @@ class Plays extends Model
         $play->save();
 
         return $play->id;
+    }
+
+    public static function getGameStateOrDetails($game_id){
+        $p = Plays::where('id', $game_id);
+        if($p->state == "pending"){
+            return [
+                'state' => -1,
+                'data' => null,
+            ];
+        } else {
+            return [
+                'state' => 1,
+                'data' => $p
+            ];
+        }
     }
 }

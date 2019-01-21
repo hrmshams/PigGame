@@ -21,6 +21,7 @@ var request = function(method, url, data, onSuccess, onFail) {
 }
 
 var GameHandler = function(){
+  var self = this
   var baseURL = 'http://127.0.0.1/myFirstSite/public/api/game_scene/'
   var routes = {
     askGame : baseURL + 'ask_new_game',
@@ -38,13 +39,13 @@ var GameHandler = function(){
   this.askForGame = function(){
     var onSucc = function(res){
       console.log(res)
+      // self.getGameState()
     }
     var onFail = function(err){
       console.log(err)
     }
 
     var game_name = document.getElementById("game-name").innerHTML;
-    // var data = 'game_name=' + game_name 
     request('GET', routes.askGame + "/" + game_name, null, onSucc, onFail)
   }
 
@@ -57,10 +58,10 @@ var GameHandler = function(){
     }
 
     var data = "game_id="+game_id 
-    this.setInterval(
+    setInterval(
         function(){ 
           request('GET', routes.getGameState, data, onSucc, onFail)
-        }              
+        }
     ,1500)
   }
 }
