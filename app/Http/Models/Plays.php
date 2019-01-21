@@ -8,17 +8,36 @@ class Plays extends Model
 {
     protected $table = 'plays';
 
-    public static function gamePendingExists(){
+    public static function gamePendingExists($gn){
         $requests = Plays::where([
             ['game_name', '=', $gn],
             ['state', '=', 'pending']
         ]);
-        $requests = Plays::where('game_name', $gn);
+        $requests = Plays::where('game_name', $gn)->find(1);
 
-        if ($requests->count() > 0)
-            return true;
+        if (isset($requests) && $requests->count() > 0)
+            return $requests;
         else
-            return false;
+            return null;
     }
 
+    public static function addUserToGame($user, $play){
+        $play->player2 = $user->email;
+        $play->state = 'playing';
+
+        $play->save();
+
+        return $play->id;
+    }
+
+    public static function makeNewGame($user, $game_name){
+        $play = new Plays;
+        $play->player1 = $user->email;
+        $play->game_name = $game_name;
+        $play->state = 'pending';
+
+        $play->save();
+
+        return $play->id;
+    }
 }

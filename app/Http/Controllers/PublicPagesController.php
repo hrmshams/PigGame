@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\Games;
 
 class PublicPagesController extends Controller
 {
@@ -19,6 +20,9 @@ class PublicPagesController extends Controller
         return view('pages.usersPage');
     }
     public function gameScene($gameName){
-        return view('pages.gameScene', ['gameName'=>$gameName]);
+        if (Games::where('name', $gameName)->count() > 0)
+            return view('pages.gameScene', ['gameName'=>$gameName]);
+        else
+            return "404";
     }
 }
