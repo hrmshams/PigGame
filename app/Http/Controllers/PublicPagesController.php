@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 class PublicPagesController extends Controller
 {
     public function __construct()
-    {
-        
-    }
+    {}
 
     public function index(){
         return redirect('home');
@@ -19,5 +17,8 @@ class PublicPagesController extends Controller
     }
     public function usersPage(){
         return view('pages.usersPage');
+    }
+    public function gameScene(){
+        return view('pages.gameScene.index');
     }
 }

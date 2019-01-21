@@ -37455,7 +37455,9 @@ var render = function() {
               }),
               _vm._v(" "),
               _vm.games.length === 0
-                ? _c("p", [_vm._v("there is no game to show!")])
+                ? _c("p", { staticClass: "pl-4" }, [
+                    _vm._v("there is no game to show!")
+                  ])
                 : _vm._e()
             ],
             2

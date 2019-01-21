@@ -25,6 +25,8 @@ Route::get('/gameReview', 'AdminPagesController@gameReview');
 
 Route::get('/login', 'PagesController@login');
 
+Route::get('/gameScene', 'PublicPagesController@gameScene');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home'); //WTF IS THIS ?

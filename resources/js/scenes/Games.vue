@@ -17,7 +17,7 @@
                             v-bind:key="index"
                         >
                         </game>
-                        <p v-if= "games.length === 0">there is no game to show!</p>
+                        <p class = "pl-4" v-if="games.length === 0">there is no game to show!</p>
                     </div>
 
                 </div>
