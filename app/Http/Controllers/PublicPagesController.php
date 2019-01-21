@@ -19,6 +19,6 @@ class PublicPagesController extends Controller
         return view('pages.usersPage');
     }
     public function gameScene(){
-        return view('pages.gameScene.index');
+        return view('pages.gameScene');
     }
 }

@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}" />
+    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}" type="text/css"/>
     <meta charset="utf-8"/>
   </head>
 
@@ -76,5 +77,5 @@
     </div>
     <!-- <img src="assets/bg.jpg" alt=""> -->
   </body>
-  <script src="js/index.js" type="text/javascript"></script>
+  <script src="{{asset('js/gameScene.js')}}" type="text/javascript"></script>
 </html>
