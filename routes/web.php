@@ -25,7 +25,7 @@ Route::get('/gameReview', 'AdminPagesController@gameReview');
 
 Route::get('/login', 'PagesController@login');
 
-Route::get('/gameScene', 'PublicPagesController@gameScene');
+Route::get('/gameScene/{gameName}', 'PublicPagesController@gameScene');
 
 Auth::routes();
 

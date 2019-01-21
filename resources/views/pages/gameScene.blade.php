@@ -3,17 +3,17 @@
 <html>
   <head>
     <link rel="stylesheet" href="{{URL::asset('css/main.css')}}" type="text/css"/>
+    <meta id ="csrf-meta" name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8"/>
   </head>
 
   <body>
     <div id="mainContainer">
-
       <!-- middle subcontainer -->
       <div id="center-sub-container" >
-
         <div class= "center">
-          <input type="text" id="scoreVal" name="fname" value="Enter the point">
+            <label id="game-name"> {{$gameName}} </label>
+            <input type="text" id="scoreVal" name="fname" value="Enter the point">
         </div>
 
         <div class="center">
@@ -78,4 +78,6 @@
     <!-- <img src="assets/bg.jpg" alt=""> -->
   </body>
   <script src="{{asset('js/gameScene.js')}}" type="text/javascript"></script>
+  <script src="{{asset('js/gameSceneModel.js')}}" type="text/javascript"></script>
+
 </html>

@@ -18,7 +18,7 @@ class PublicPagesController extends Controller
     public function usersPage(){
         return view('pages.usersPage');
     }
-    public function gameScene(){
-        return view('pages.gameScene');
+    public function gameScene($gameName){
+        return view('pages.gameScene', ['gameName'=>$gameName]);
     }
 }
