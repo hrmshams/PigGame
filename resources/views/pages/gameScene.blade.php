@@ -56,7 +56,7 @@
       <!-- left subcontainer -->
       <div class="subContainer center player" id="player-0-container">
         <div class = "center top-sub-cont">
-          <p>PLAYER 0</p>
+          <p id="player1name">PLAYER 0</p>
           <p class = "point red" id="player-0-sumpoint">0</p>
         </div>
 
@@ -71,7 +71,7 @@
       <!-- right subcontainer -->
       <div class="subContainer center" id="player-1-container">
         <div class = "center top-sub-cont">
-          <p>PLAYER 1</p>
+          <p id="player2name">PLAYER 1</p>
           <p class="point red" id="player-1-sumpoint">0</p>
         </div>
 

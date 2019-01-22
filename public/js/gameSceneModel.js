@@ -1,4 +1,6 @@
 const csrf_token = document.getElementById("csrf-meta").getAttribute('content');
+const player1Name = document.getElementById("player1name")
+const player2Name = document.getElementById("player2name")
 
 var request = function(method, url, data, onSuccess, onFail) {
     var xhttp = new XMLHttpRequest()
@@ -52,7 +54,10 @@ var GameHandler = function(){
 
   this.getGameState = function(game_id){
     var onSucc = function (res){
-      console.log(res)
+      var json = JSON.parse(res)
+      player1Name.innerHTML = json.player1
+      player2Name.innerHTML = json.player2
+      console.log(json);
     }
     var onFail = function(err){
       console.log(err)
