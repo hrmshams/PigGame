@@ -37,6 +37,13 @@ class CreateUsersTable extends Migration
             ],
             [
                 'id' => 2,
+                'name' => 'reza',
+                'email' => 'hrm.shams@gmail.com',
+                'password' => '$2y$10$V31YAOVXjig.B95QsARraedRafDQhf3A1AT9AgYThVMPOHGG34IYe',
+                'is_admin' => false,
+            ],
+            [
+                'id' => 3,
                 'name' => 'admin agha',
                 'email' => 'admin@gmail.com',
                 'password' => '$2y$10$V31YAOVXjig.B95QsARraedRafDQhf3A1AT9AgYThVMPOHGG34IYe',

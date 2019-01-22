@@ -1774,6 +1774,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     data: Object
@@ -1904,6 +1907,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_commentReview__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/commentReview */ "./resources/js/components/commentReview.vue");
 /* harmony import */ var _components_filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/filters */ "./resources/js/components/filters.vue");
+/* harmony import */ var _controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../controller/apiConnector.js */ "./resources/js/controller/apiConnector.js");
 //
 //
 //
@@ -1923,6 +1927,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1944,16 +1949,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
     //todo 
-    this.comments = [{
-      sender: 'mohammad',
-      comment: 'this is a cool game!',
-      rate: 4
-    }, {
-      sender: 'hamid',
-      comment: 'this game sucks man!',
-      rate: 4
-    }];
+    this.comments = [// {
+      //     sender : 'mohammad',
+      //     receiver : 'reza',
+      //     comment : 'this is a cool game!',
+      //     rate : 4
+      // },
+    ];
     this.filters = [{
       title: 'filter1',
       onclick: function onclick() {
@@ -1965,6 +1970,24 @@ __webpack_require__.r(__webpack_exports__);
         console.log('2');
       }
     }];
+
+    if (this.type === this.types.USER_REVIEW) {
+      // console.log('acc1')
+      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__["getAdminReviews"])(false, function (res) {
+        _this.comments = res.data;
+        console.log(res);
+      }, function (err) {
+        console.log(err);
+      });
+    } else {
+      // console.log('acc2')
+      Object(_controller_apiConnector_js__WEBPACK_IMPORTED_MODULE_2__["getAdminReviews"])(true, function (res) {
+        _this.comments = res.data;
+        console.log(res);
+      }, function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -37190,7 +37213,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card bg-light mb-2" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v(_vm._s(_vm.data.sender))
+      _c("p", [_vm._v("sender : " + _vm._s(_vm.data.sender))]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("receiver : " + _vm._s(_vm.data.receiver || _vm.data.game_name))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
@@ -49625,7 +49652,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/controller/apiConnector.js ***!
   \*************************************************/
-/*! exports provided: getUsers, getGames, addGame */
+/*! exports provided: getUsers, getGames, addGame, getAdminReviews */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49633,11 +49660,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGames", function() { return getGames; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addGame", function() { return addGame; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAdminReviews", function() { return getAdminReviews; });
 var baseUrl = "/myFirstSite/public/";
 var methods = {
   getUsers: "api/users",
   getGames: 'api/games',
-  addGame: 'api/games/add_game'
+  addGame: 'api/games/add_game',
+  getReviews: 'api/get_reviews/'
 };
 var csrf_token = document.getElementById("csrf-meta").getAttribute('content');
 
@@ -49698,22 +49727,29 @@ function addGame(data, onSuccess, onFailure) {
     onSuccess(res);
   }).catch(function (err) {
     onFailure(err);
-  }); // fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //         "Content-Type": "application/json",
-  //         "X-CSRF-TOKEN" : csrf_token
-  //     },
-  //     body : JSON.stringify(data)
-  // })
-  // .then(response => response.json())     
-  // .then(response => {
-  //     onSuccess(response)
-  // })     
-  // .catch(err =>{
-  //     onFailure(err)
-  // }
-  // );
+  });
+}
+function getAdminReviews(isGameComments, onSuccess, onFailure) {
+  var url = methods.getReviews;
+
+  if (isGameComments) {
+    url += "games";
+  } else {
+    url += "users";
+  }
+
+  axios({
+    method: 'get',
+    url: url,
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": csrf_token
+    }
+  }).then(function (res) {
+    onSuccess(res);
+  }).catch(function (err) {
+    onFailure(err);
+  });
 }
 
 /***/ }),

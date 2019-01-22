@@ -20,6 +20,7 @@
 <script>
 import commentReview from '../components/commentReview'
 import filters from '../components/filters'
+import {getAdminReviews} from '../controller/apiConnector.js'
 
 export default {
     components : {
@@ -42,21 +43,37 @@ export default {
     created() {
         //todo 
         this.comments = [
-            {
-                sender : 'mohammad',
-                comment : 'this is a cool game!',
-                rate : 4
-            },
-            {
-                sender : 'hamid',
-                comment : 'this game sucks man!',
-                rate : 4
-            }
+            // {
+            //     sender : 'mohammad',
+            //     receiver : 'reza',
+            //     comment : 'this is a cool game!',
+            //     rate : 4
+            // },
         ]      
         this.filters = [
             {title : 'filter1', onclick : ()=>{console.log('1')}},
             {title : 'filter2', onclick : ()=>{console.log('2')}}
         ]
+
+        if (this.type === this.types.USER_REVIEW){
+            // console.log('acc1')
+            getAdminReviews(false, 
+            (res)=>{
+                this.comments = res.data
+                console.log(res)
+            }, (err)=>{
+                console.log(err)
+            })
+        }else{
+            // console.log('acc2')
+            getAdminReviews(true,
+            (res)=>{
+                this.comments = res.data
+                console.log(res)
+            }, (err)=>{
+                console.log(err)
+            })
+        }
     },
 }
 </script>

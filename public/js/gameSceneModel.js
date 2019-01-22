@@ -49,7 +49,7 @@ var GameHandler = function(){
     var onSucc = function(res){
       console.log(res)
       var json = JSON.parse(res)
-      this.game_id = json.game_id
+      self.game_id = json.game_id
       self.getGameState(json.game_id)
     }
     var onFail = function(err){
@@ -79,8 +79,10 @@ var GameHandler = function(){
   }
 
   this.endGame = function(){
-    if (!this.game_id)
+    if (!self.game_id){
+      console.log('acc')
       return
+    }
 
     var onSucc = function(res){
       console.log(res)

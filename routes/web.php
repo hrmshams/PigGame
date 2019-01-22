@@ -47,3 +47,7 @@ Route::get('/api/game_scene/end_game/{game_id}', 'api\GameSceneController@endGam
 Route::get('/api/game_scene/comment_user/{game_id}/{$comment}', 'api\GameSceneController@commentUser');
 Route::get('/api/game_scene/comment_game/{game_id}/{$comment}', 'api\GameSceneController@commentGame');
 
+Route::get('/api/get_reviews/{is_game_comments}', 'api\AdminController@getReviews');
+Route::get('/api/get_reviews/{is_game_comments}', 'api\AdminController@getReviews');
+
+

@@ -2,7 +2,8 @@ const baseUrl = "/myFirstSite/public/"
 const methods = {
     getUsers : "api/users",
     getGames : 'api/games',
-    addGame : 'api/games/add_game'
+    addGame : 'api/games/add_game',
+    getReviews: 'api/get_reviews/'
 }
 const csrf_token = document.getElementById("csrf-meta").getAttribute('content');
 const axios = require('axios')
@@ -60,21 +61,27 @@ export function addGame(data, onSuccess, onFailure){
     }).catch((err)=>{
         onFailure(err)
     });
+}
 
-    // fetch(url, {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "X-CSRF-TOKEN" : csrf_token
-    //     },
-    //     body : JSON.stringify(data)
-    // })
-    // .then(response => response.json())     
-    // .then(response => {
-    //     onSuccess(response)
-    // })     
-    // .catch(err =>{
-    //     onFailure(err)
-    // }
-    // );
+export function getAdminReviews(isGameComments, onSuccess, onFailure){
+    let url = methods.getReviews
+    if (isGameComments){
+        url += "games"
+    }else{
+        url += "users"
+    }
+
+    axios({
+        method: 'get',
+        url: url,
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN" : csrf_token
+        },
+    }).then((res)=>{
+        onSuccess(res)
+    }).catch((err)=>{
+        onFailure(err)
+    });
+
 }
