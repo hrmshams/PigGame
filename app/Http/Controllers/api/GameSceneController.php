@@ -19,23 +19,34 @@ class GameSceneController extends Controller
 
         $gn = substr($game_name, 1, strlen($game_name)-1);
 
-        $play = Plays::gamePendingExists($gn);
+        $playingGame = Plays::gamePlayingExists($gn, $user);
+        if ($playingGame['isset']){
+            return [
+                'game_id' => $playingGame['data'],
+                'msg' => "a play has been associated to you!"
+            ];
+        }
 
-        if ($play !== null){
-            $result = Plays::addUserToGame($user, $play);
-            return $result;
+        $playPending = Plays::gamePendingExists($gn);
+        if ($playPending !== null){
+            $result = Plays::addUserToGame($user, $playPending);
+            return [
+                'game_id' => $result
+            ];
         }else{
             $result = Plays::makeNewGame($user, $gn);
-            return $result;
+            return [
+                'game_id' => $result
+            ];
         }
     }
 
     public function getGameState($game_id){
         $result = Plays::getGameStateOrDetails($game_id);
-        if ($result->state == -1){
+        if ($result['hasfound'] == false){
             return "no user has found yet.";
         }else{
-            return $result->data;
+            return $result['data'];
         }
     }
 }

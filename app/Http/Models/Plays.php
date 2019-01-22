@@ -8,6 +8,25 @@ class Plays extends Model
 {
     protected $table = 'plays';
 
+    public static function gamePlayingExists($gn, $user){
+        $play = Plays::where([
+            ['game_name', '=', $gn],
+        ])->first();
+
+        if (isset($play)){
+            if ($play->player1 == $user->email || $play->player2 == $user->email){
+                return [
+                    'isset' => true,
+                    'data' => $play->id
+                ];
+            }    
+        }
+        return [
+            'isset' => false,
+            'data' => null
+        ];
+    }
+
     public static function gamePendingExists($gn){
         $requests = Plays::where([
             ['game_name', '=', $gn],
@@ -41,15 +60,17 @@ class Plays extends Model
     }
 
     public static function getGameStateOrDetails($game_id){
-        $p = Plays::where('id', $game_id);
-        if($p->state == "pending"){
+        // return $game_id;
+        $p = Plays::where('id', $game_id)->first();
+
+        if(isset($p) && $p->state == "pending"){
             return [
-                'state' => -1,
+                'hasfound' => false,
                 'data' => null,
             ];
         } else {
             return [
-                'state' => 1,
+                'hasfound' => true,
                 'data' => $p
             ];
         }

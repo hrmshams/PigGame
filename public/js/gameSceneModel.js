@@ -39,7 +39,8 @@ var GameHandler = function(){
   this.askForGame = function(){
     var onSucc = function(res){
       console.log(res)
-      // self.getGameState()
+      var json = JSON.parse(res)
+      self.getGameState(json.game_id)
     }
     var onFail = function(err){
       console.log(err)
@@ -57,10 +58,9 @@ var GameHandler = function(){
       console.log(err)
     }
 
-    var data = "game_id="+game_id 
     setInterval(
         function(){ 
-          request('GET', routes.getGameState, data, onSucc, onFail)
+          request('GET', routes.getGameState+ "/" + game_id, null, onSucc, onFail)
         }
     ,1500)
   }
