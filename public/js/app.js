@@ -37326,14 +37326,10 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c(
-          "button",
+          "a",
           {
             staticClass: "btn btn-primary",
-            on: {
-              click: function($event) {
-                _vm.playGame()
-              }
-            }
+            attrs: { href: "gameScene/" + _vm.game.name }
           },
           [_vm._v(" play ")]
         )

@@ -15,6 +15,7 @@
  * web pages routes
  */
 Route::get('/', 'PublicPagesController@index');
+// Route::get('/home', 'PublicPagesController@index');
 Route::get('/makeGame', 'UserPagesController@makeGame');
 Route::get('/games', 'PublicPagesController@games');
 Route::get('/users', 'PublicPagesController@usersPage');

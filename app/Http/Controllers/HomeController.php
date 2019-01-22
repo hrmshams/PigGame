@@ -25,6 +25,6 @@ class HomeController extends Controller
     {
         // $user = Auth::user();
         // return ($user);
-        return view('home');
+        return view('pages.index');
     }
 }

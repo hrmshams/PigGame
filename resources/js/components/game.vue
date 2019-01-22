@@ -7,7 +7,7 @@
                 </div>
                 <p class = "card-text"> rate : {{game.rate}} </p>
                 <p class = "card-text"> Played : {{game.played}} </p>
-                <button v-on:click = "playGame()" class="btn btn-primary"> play </button>
+                <a :href = "'gameScene/' + game.name" class = "btn btn-primary"> play </a>
             </div>
         </div>
     </div>
@@ -22,6 +22,7 @@ export default {
     },
     methods: {
         playGame : function(){
+
             console.log('acc')
         }
     },    
