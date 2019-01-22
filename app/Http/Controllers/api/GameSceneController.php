@@ -4,6 +4,9 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Models\Plays;
+use App\Http\Models\UsersComments;
+use App\Http\Models\GamesComments;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,5 +51,48 @@ class GameSceneController extends Controller
         }else{
             return $result['data'];
         }
+    }
+
+    public function endGame($game_id){
+        Plays::where('id', $game_id)->first()->delete();
+    }
+
+    public function commentUser($game_id, $comment){
+        $user = Auth::user();
+        $p = Plays::where('id', $game_id)->first();
+
+        $sender = $user->email;
+        $reciever = "";
+        if ($p->player1 === $user->email){
+            $reciever = $p->player2;
+        }else{
+            $reciever = $p->player1;
+        }
+        
+        $uComment = new UsersComments;
+        $uComment->sender = $sender;
+        $uComment->receiver = $reciever;
+        $comment = $comment;
+
+        $uComment->save();
+
+        return 'user commentADDED';
+    }
+
+    public function commentGame($game_id, $comment){
+        $user = Auth::user();
+        $p = Plays::where('id', $game_id)->first();
+
+        $sender = $user->email;
+        $game_name = $p->game_name;
+
+        $gComment = new GamesComments;
+        $gComment->sender = $sender;
+        $gComment->game_name = $game_name;
+        $comment = $comment;
+
+        $gComment->save();
+
+        return 'game commentADDED';
     }
 }

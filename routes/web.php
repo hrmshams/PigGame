@@ -41,3 +41,9 @@ Route::post('/api/games/add_game', 'api\GamesController@addGame')->middleware('a
 
 Route::get('/api/game_scene/ask_new_game/{game_name}', 'api\GameSceneController@askGame')->middleware('auth');
 Route::get('/api/game_scene/get_game_state/{game_id}', 'api\GameSceneController@getGameState');
+
+
+Route::get('/api/game_scene/end_game/{game_id}', 'api\GameSceneController@endGame');
+Route::get('/api/game_scene/comment_user/{game_id}/{$comment}', 'api\GameSceneController@commentUser');
+Route::get('/api/game_scene/comment_game/{game_id}/{$comment}', 'api\GameSceneController@commentGame');
+

@@ -12,11 +12,13 @@
     <meta id ="img5" content="{{ asset('assets/dice-5.png') }}">
     <meta id ="img6" content="{{ asset('assets/dice-6.png') }}">
 
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> --}}
 
     <meta charset="utf-8"/>
   </head>
 
   <body>
+
     <div id="mainContainer">
       <!-- middle subcontainer -->
       <div id="center-sub-container" >
@@ -49,6 +51,12 @@
           <div id="hold-btn" class="transparent-btn">
             <span class="lnr lnr-hold"></span> HOLD
           </div>
+
+          <div id="end-btn" class="transparent-btn">
+              <span class="lnr lnr-hold"></span> END
+          </div>
+  
+
         </div>
 
       </div>
@@ -84,7 +92,8 @@
       </div>
 
     </div>
-    <!-- <img src="assets/bg.jpg" alt=""> -->
+
+
   </body>
   <script src="{{asset('js/gameScene.js')}}" type="text/javascript"></script>
   <script src="{{asset('js/gameSceneModel.js')}}" type="text/javascript"></script>

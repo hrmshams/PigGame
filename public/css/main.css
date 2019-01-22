@@ -118,7 +118,7 @@ p{
 }
 
 #center-sub-container :nth-child(3){
-  height: 43%;
+  height: 40%;
   /* background-color: red; */
 }
 
@@ -133,10 +133,10 @@ p{
     width: 100%;
 }
 #center-sub-container :nth-child(4){
-  height: 8%;
+  height: 6%;
 }
 #center-sub-container :nth-child(5){
-  height: 15%;
+  height: 20%;
 }
 
 /* text input */
